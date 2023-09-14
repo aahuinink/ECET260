@@ -43,8 +43,8 @@ enum Colours {
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define SetPin(PIN_NAME) HAL_GPIO_WritePin((PIN_Name)_GPIO_Port, (PIN_NAME)_Pin, GPIO_PIN_SET)
-#define ResetPin(PIN_NAME) HAL_GPIO_WritePin((PIN_Name)_GPIO_Port, (PIN_NAME)_Pin, GPIO_PIN_RESET)
+#define SetPin(PIN_NAME) HAL_GPIO_WritePin((PIN_NAME)_GPIO_Port, (PIN_NAME)_Pin, GPIO_PIN_SET)
+#define ResetPin(PIN_NAME) HAL_GPIO_WritePin((PIN_NAME)_GPIO_Port, (PIN_NAME)_Pin, GPIO_PIN_RESET)
 #define SetPort(PORT_NAME, PIN_SEQ) HAL_GPIO_WritePin((PORT_NAME), (PIN_SEQ), GPIO_PIN_SET)
 #define ResetPort(PORT_NAME, PIN_SEQ) HAL_GPIO_WritePin((PORT_NAME), (PIN_SEQ), GPIO_PIN_RESET)
 
@@ -67,7 +67,7 @@ static void MX_USART2_UART_Init(void);
 // Checks to see if the button is pressed for a certain delay time.
 // ARGS: delay<int> : the time in ms that the button should be polled.
 // RETURNS: [void]
-char CheckButton();
+char CheckButton(int delay);
 
 
 /* USER CODE END PFP */
@@ -78,7 +78,7 @@ char CheckButton();
 /* USER CODE END 0 */
 
 /**
-  * @brief  The application entry point.
+  * @brief  The application entry point.HDKELOTELKLAKDLK
   * @retval int
   */
 int main(void)
@@ -86,10 +86,12 @@ int main(void)
   /* USER CODE BEGIN 1 */
 
 	// flag to see if the colours should be white
-	char ButtonFlag = 0;
+	char WhiteFlag = 0;
 
 	// set initial colour to red
-	Colours colour = r;
+	enum Colours colour;
+
+	colour = r;
 
   /* USER CODE END 1 */
 
@@ -124,9 +126,53 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
 	  while(!WhiteFlag){	// while the colour to be shown is not white
+
+		  // state machine determines what colour to turn on
 		  switch (colour){
-		  case RED:
+		  case r:
+			  HAL_GPIO_WritePin(RED_GPIO_Port, RED_Pin, GPIO_PIN_SET);
+			  break;
+		  case g:
+			  HAL_GPIO_WritePin(GREEN_GPIO_Port, GREEN_Pin, GPIO_PIN_SET);
+			  break;
+		  case b:
+			  HAL_GPIO_WritePin(BLUE_GPIO_Port, BLUE_Pin, GPIO_PIN_SET);
+			  break;
 		  }
+
+		  // check the button for 250ms
+		  if(CheckButton(250)){ // if pressed
+			  WhiteFlag = 1; 	// set whiteflag
+			  break;			// break while loop
+		  }else{
+			  switch (colour){	// control pins to turn off
+			  case r:
+				  HAL_GPIO_WritePin(RED_GPIO_Port, RED_Pin, GPIO_PIN_RESET); 	// turn off red
+				  colour = g;		// set colour to green
+				  break;
+			  case g:				//etc...
+				  HAL_GPIO_WritePin(GREEN_GPIO_Port, GREEN_Pin, GPIO_PIN_RESET);
+				  colour = b;
+				  break;
+			  case b:
+				  HAL_GPIO_WritePin(BLUE_GPIO_Port, BLUE_Pin, GPIO_PIN_RESET);
+				  colour = r;
+				  break;
+			  }
+		  }
+
+		  WhiteFlag = CheckButton(250); // check button again and set white flag to 1 if button is pressed, else 0
+	  }
+
+	  while(WhiteFlag){							// while the LED should be white
+		  HAL_GPIO_WritePin(GPIOB, WHITE, GPIO_PIN_SET); 					// turn off white light;					// turn on white light
+		  while (HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == GPIO_PIN_SET); 	// while the button is not pressed, do nothing
+		  HAL_Delay(30); 													// delay 30ms to debounce
+		  if(HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == GPIO_PIN_RESET){		// if still pressed
+			  WhiteFlag = 0;												// set WhiteFlag to 0
+		  }
+		  while(HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == GPIO_PIN_RESET); 	// wait for release
+		  HAL_GPIO_WritePin(GPIOB, WHITE, GPIO_PIN_RESET); 					// turn off white light
 	  }
 
   }
@@ -261,6 +307,27 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+// --- Private Function Definitions --- //
+
+// --- CheckButton --- //
+// Checks to see if the button is pressed for a certain delay time.
+// ARGS: delay<int> : the time in ms that the button should be polled.
+// RETURNS: [void]
+char CheckButton(int delay){
+	uint32_t start = HAL_GetTick();				// get starting clock time
+	  while ((HAL_GetTick() - start) < delay){	// while the time delay hasn't past
+		  if(HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == GPIO_PIN_RESET){	// if button pressed
+			  HAL_Delay(30); 					// delay 30ms to debounce
+		  }
+		  if(HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == GPIO_PIN_RESET){	// if button still pressed
+			  HAL_GPIO_WritePin(GPIOB, WHITE, GPIO_PIN_SET);
+			  while(HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == GPIO_PIN_RESET);	// do nothing and wait for release
+			  return 1;							// return 1 to signify the button was pressed
+		  }
+	  }
+	  return 0;		// return 0 if button is never pressed
+}
 
 /* USER CODE END 4 */
 

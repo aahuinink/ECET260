@@ -388,55 +388,55 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  HAL_GPIO_WritePin(RED_GPIO_Port, RED_Pin, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(RED_GPIO_Port, RED_Pin, GPIO_PIN_SET);			// turn on red led
  8000514:	2201      	movs	r2, #1
  8000516:	f44f 4100 	mov.w	r1, #32768	; 0x8000
  800051a:	481a      	ldr	r0, [pc, #104]	; (8000584 <main+0x84>)
  800051c:	f000 fd42 	bl	8000fa4 <HAL_GPIO_WritePin>
-	  HAL_Delay(250);
+	  HAL_Delay(250);													// delay 250ms
  8000520:	20fa      	movs	r0, #250	; 0xfa
  8000522:	f000 faa1 	bl	8000a68 <HAL_Delay>
-	  HAL_GPIO_WritePin(RED_GPIO_Port, RED_Pin, GPIO_PIN_RESET);
+	  HAL_GPIO_WritePin(RED_GPIO_Port, RED_Pin, GPIO_PIN_RESET);		// turn off red led
  8000526:	2200      	movs	r2, #0
  8000528:	f44f 4100 	mov.w	r1, #32768	; 0x8000
  800052c:	4815      	ldr	r0, [pc, #84]	; (8000584 <main+0x84>)
  800052e:	f000 fd39 	bl	8000fa4 <HAL_GPIO_WritePin>
-	  HAL_Delay(250);
+	  HAL_Delay(250);													// delay 250ms
  8000532:	20fa      	movs	r0, #250	; 0xfa
  8000534:	f000 fa98 	bl	8000a68 <HAL_Delay>
-	  HAL_GPIO_WritePin(GREEN_GPIO_Port, GREEN_Pin, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(GREEN_GPIO_Port, GREEN_Pin, GPIO_PIN_SET);		// turn on green led
  8000538:	2201      	movs	r2, #1
  800053a:	f44f 4180 	mov.w	r1, #16384	; 0x4000
  800053e:	4811      	ldr	r0, [pc, #68]	; (8000584 <main+0x84>)
  8000540:	f000 fd30 	bl	8000fa4 <HAL_GPIO_WritePin>
-	  HAL_Delay(250);
+	  HAL_Delay(250);													// delay 250ms
  8000544:	20fa      	movs	r0, #250	; 0xfa
  8000546:	f000 fa8f 	bl	8000a68 <HAL_Delay>
-	  HAL_GPIO_WritePin(GREEN_GPIO_Port, GREEN_Pin, GPIO_PIN_RESET);
+	  HAL_GPIO_WritePin(GREEN_GPIO_Port, GREEN_Pin, GPIO_PIN_RESET);	// turn off green led
  800054a:	2200      	movs	r2, #0
  800054c:	f44f 4180 	mov.w	r1, #16384	; 0x4000
  8000550:	480c      	ldr	r0, [pc, #48]	; (8000584 <main+0x84>)
  8000552:	f000 fd27 	bl	8000fa4 <HAL_GPIO_WritePin>
-	  HAL_Delay(250);
+	  HAL_Delay(250);													// delay 250ms
  8000556:	20fa      	movs	r0, #250	; 0xfa
  8000558:	f000 fa86 	bl	8000a68 <HAL_Delay>
-	  HAL_GPIO_WritePin(BLUE_GPIO_Port, BLUE_Pin, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(BLUE_GPIO_Port, BLUE_Pin, GPIO_PIN_SET);		// turn on blue led
  800055c:	2201      	movs	r2, #1
  800055e:	f44f 5100 	mov.w	r1, #8192	; 0x2000
  8000562:	4808      	ldr	r0, [pc, #32]	; (8000584 <main+0x84>)
  8000564:	f000 fd1e 	bl	8000fa4 <HAL_GPIO_WritePin>
-	  HAL_Delay(250);
+	  HAL_Delay(250);													// delay 250ms
  8000568:	20fa      	movs	r0, #250	; 0xfa
  800056a:	f000 fa7d 	bl	8000a68 <HAL_Delay>
-	  HAL_GPIO_WritePin(BLUE_GPIO_Port, BLUE_Pin, GPIO_PIN_RESET);
+	  HAL_GPIO_WritePin(BLUE_GPIO_Port, BLUE_Pin, GPIO_PIN_RESET);		// turn off blue led
  800056e:	2200      	movs	r2, #0
  8000570:	f44f 5100 	mov.w	r1, #8192	; 0x2000
  8000574:	4803      	ldr	r0, [pc, #12]	; (8000584 <main+0x84>)
  8000576:	f000 fd15 	bl	8000fa4 <HAL_GPIO_WritePin>
-	  HAL_Delay(250);
+	  HAL_Delay(250);													// delay 250ms
  800057a:	20fa      	movs	r0, #250	; 0xfa
  800057c:	f000 fa74 	bl	8000a68 <HAL_Delay>
-	  HAL_GPIO_WritePin(RED_GPIO_Port, RED_Pin, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(RED_GPIO_Port, RED_Pin, GPIO_PIN_SET);			// turn on red led
  8000580:	e7c8      	b.n	8000514 <main+0x14>
  8000582:	bf00      	nop
  8000584:	40020400 	.word	0x40020400
