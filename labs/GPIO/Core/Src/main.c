@@ -165,7 +165,7 @@ int main(void)
 	  }
 
 	  while(WhiteFlag){							// while the LED should be white
-		  HAL_GPIO_WritePin(GPIOB, WHITE, GPIO_PIN_SET); 					// turn off white light;					// turn on white light
+		  HAL_GPIO_WritePin(GPIOB, WHITE, GPIO_PIN_SET); 					// turn on white light;
 		  while (HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == GPIO_PIN_SET); 	// while the button is not pressed, do nothing
 		  HAL_Delay(30); 													// delay 30ms to debounce
 		  if(HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == GPIO_PIN_RESET){		// if still pressed
