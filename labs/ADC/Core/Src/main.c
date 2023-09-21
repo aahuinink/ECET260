@@ -105,11 +105,11 @@ int main(void)
   while (1)
   {
 
-	  HAL_ADC_Start(&hadc1);	// start ADC1
-	  HAL_ADC_PollForConversion(&hadc1, 100);
-	  thermADC = HAL_ADC_GetValue(&hadc1);
-	  temp = convertAnalogToTemperature(thermADC);
-	  printf("The temperature is %f.1 degrees Celcius.\n\r", temp);
+	  HAL_ADC_Start(&hadc1);					// start ADC1
+	  HAL_ADC_PollForConversion(&hadc1, 100);	// wait for it to finish
+	  thermADC = HAL_ADC_GetValue(&hadc1);		// retrieve ADC value
+	  temp = convertAnalogToTemperature(thermADC);	// convert to temperature
+	  printf("The temperature is %.1f degrees Celcius.\n\r", temp);	// print to the debugger console
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

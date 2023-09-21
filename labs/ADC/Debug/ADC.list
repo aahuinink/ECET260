@@ -1363,7 +1363,7 @@ int main(void)
  8001004:	6878      	ldr	r0, [r7, #4]
  8001006:	f000 fb33 	bl	8001670 <convertAnalogToTemperature>
  800100a:	ed87 0a00 	vstr	s0, [r7]
-	  printf("The temperature i %f2 degrees Celcius.\n\r", temp);
+	  printf("The temperature is %.1f degrees Celcius.\n\r", temp);
  800100e:	6838      	ldr	r0, [r7, #0]
  8001010:	f7ff faba 	bl	8000588 <__aeabi_f2d>
  8001014:	4602      	mov	r2, r0
@@ -2642,7 +2642,7 @@ float  convertAnalogToTemperature(uint32_t analogReadValue)
  8001682:	4b3b      	ldr	r3, [pc, #236]	; (8001770 <convertAnalogToTemperature+0x100>)
  8001684:	e055      	b.n	8001732 <convertAnalogToTemperature+0xc2>
 
-  return (1/((log(((10000.0 * analogReadValue) / (4095.0 - analogReadValue))/90000.0)/3950.0) + (1 / (273.15 + 25.000)))) - 273.15;
+  return (1/((log(((10000.0 * analogReadValue) / (4095.0 - analogReadValue))/95000.0)/3950.0) + (1 / (273.15 + 25.000)))) - 273.15;
  8001686:	6878      	ldr	r0, [r7, #4]
  8001688:	f7fe ff5c 	bl	8000544 <__aeabi_ui2d>
  800168c:	a32c      	add	r3, pc, #176	; (adr r3, 8001740 <convertAnalogToTemperature+0xd0>)
@@ -2717,7 +2717,7 @@ float  convertAnalogToTemperature(uint32_t analogReadValue)
  8001748:	00000000 	.word	0x00000000
  800174c:	40affe00 	.word	0x40affe00
  8001750:	00000000 	.word	0x00000000
- 8001754:	40f5f900 	.word	0x40f5f900
+ 8001754:	40f73180 	.word	0x40f73180
  8001758:	00000000 	.word	0x00000000
  800175c:	40aedc00 	.word	0x40aedc00
  8001760:	dcb5db83 	.word	0xdcb5db83

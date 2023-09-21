@@ -41,7 +41,7 @@ float  convertAnalogToTemperature(uint32_t analogReadValue)
   // Treat as crazy out-of-range temperature.
   if(analogReadValue == 4095) return 1000.0;
 
-  return (1/((log(((10000.0 * analogReadValue) / (4095.0 - analogReadValue))/90000.0)/3950.0) + (1 / (273.15 + 25.000)))) - 273.15;
+  return (1/((log(((10000.0 * analogReadValue) / (4095.0 - analogReadValue))/95000.0)/3950.0) + (1 / (273.15 + 25.000)))) - 273.15;
 }
 
 
