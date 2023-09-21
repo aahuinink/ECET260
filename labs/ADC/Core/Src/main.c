@@ -21,7 +21,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "thermistor.h"
+#include <stdio.h>
+#include <stdint.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -106,7 +108,8 @@ int main(void)
 	  HAL_ADC_Start(&hadc1);	// start ADC1
 	  HAL_ADC_PollForConversion(&hadc1, 100);
 	  thermADC = HAL_ADC_GetValue(&hadc1);
-	  printf("The value is %d\n\r", thermADC);
+	  temp = convertAnalogToTemperature(thermADC);
+	  printf("The temperature i %f2 degrees Celcius.\n\r", temp);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

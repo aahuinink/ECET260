@@ -30,7 +30,7 @@
 //                             \-> analogPin
 //
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+#include "thermistor.h"
 /** Calculate the temperature in °C from ADC (analogRead) value (best accuracy).
  *
  *  This conversion should generate reasonably accurate results over the entire range of
@@ -41,7 +41,7 @@
  *  @return  Temperature in °C
  */
 
-double  convertAnalogToTemperature(uint16_t analogReadValue)
+double  convertAnalogToTemperature(uint32_t analogReadValue)
 {
   // If analogReadValue is 4095, we would otherwise cause a Divide-By-Zero,
   // Treat as crazy out-of-range temperature.
