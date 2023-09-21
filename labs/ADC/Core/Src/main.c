@@ -73,7 +73,7 @@ int main(void)
   /* USER CODE BEGIN 1 */
 	// create variables
 	  uint32_t thermADC;
-	  double temp;
+	  float temp;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/

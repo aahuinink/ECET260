@@ -1,10 +1,3 @@
-/*
- * thermistor.c
- *
- *  Created on: Sep 21, 2023
- *      Author: a_hui
- */
-
 // <== AFTER PASTING IN YOUR CODE THERE MIGHT BE A QUOTE MARK HERE, DELETE IT
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ADC Value to Temperature for NTC Thermistor.
@@ -12,7 +5,7 @@
 // Licence: BSD (see footer for legalese)
 //
 // Thermistor characteristics:
-//   Nominal Resistance 104000 at 25°C
+//   Nominal Resistance 90000 at 25°C
 //   Beta Value 3950
 //
 // Usage Examples:
@@ -30,24 +23,25 @@
 //                             \-> analogPin
 //
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 #include "thermistor.h"
 /** Calculate the temperature in °C from ADC (analogRead) value (best accuracy).
  *
  *  This conversion should generate reasonably accurate results over the entire range of
  *  the thermistor, it implements the common 'Beta' approximation for a thermistor
- *  having Beta of 3950, and nominal values of 104000Ω at 25°C
+ *  having Beta of 3950, and nominal values of 90000Ω at 25°C
  *
  *  @param   The result of an ADC conversion (analogRead) in the range 0 to 4095
  *  @return  Temperature in °C
  */
 
-double  convertAnalogToTemperature(uint32_t analogReadValue)
+float  convertAnalogToTemperature(uint32_t analogReadValue)
 {
   // If analogReadValue is 4095, we would otherwise cause a Divide-By-Zero,
   // Treat as crazy out-of-range temperature.
   if(analogReadValue == 4095) return 1000.0;
 
-  return (1/((log(((10000.0 * analogReadValue) / (4095.0 - analogReadValue))/104000.0)/3950.0) + (1 / (273.15 + 25.000)))) - 273.15;
+  return (1/((log(((10000.0 * analogReadValue) / (4095.0 - analogReadValue))/90000.0)/3950.0) + (1 / (273.15 + 25.000)))) - 273.15;
 }
 
 
@@ -61,20 +55,20 @@ double  convertAnalogToTemperature(uint32_t analogReadValue)
  *
  *  This conversion has the following caveats...
  *    Suitable Range              : 1°C to 40°C
- *    Average Error (Within Range): +/- 1.537 °C°C
- *    Maximum Error (Within Range): 4.069 °C°C
+ *    Average Error (Within Range): +/- 1.49 °C°C
+ *    Maximum Error (Within Range): 3.964 °C°C
  *
  *  This approximation implements a linear regression of the Beta approximation
- *  for a thermistor having Beta of 3950, and nominal values of 104000Ω at
+ *  for a thermistor having Beta of 3950, and nominal values of 90000Ω at
  *  25°C calculated for temperatures across the range above.
  *
  * @param   The result of an ADC conversion (analogRead) in the range 0 to 4095
- * @return  Temperature in °C (+/- 4.069 °C)
+ * @return  Temperature in °C (+/- 3.964 °C)
  */
 
 float  approximateTemperatureFloat(unsigned int analogReadValue)
 {
-  return -0.0755943441217131*analogReadValue+305.556541717895;
+  return -0.0672481220766823*analogReadValue+271.065171211736;
 }
 
 /** Approximate the temperature in °C from ADC (analogRead) value, using integer math.
@@ -85,20 +79,20 @@ float  approximateTemperatureFloat(unsigned int analogReadValue)
  *
  *  This conversion has the following caveats...
  *    Suitable Range              : 1°C to 40°C
- *    Average Error (Within Range): +/- 1.500 °C°C
- *    Maximum Error (Within Range): 4.220 °C°C
+ *    Average Error (Within Range): +/- 1.470 °C°C
+ *    Maximum Error (Within Range): 4.000 °C°C
  *
  *  This approximation implements a linear regression of the Beta approximation
- *  for a thermistor having Beta of 3950, and nominal values of 104000Ω at
+ *  for a thermistor having Beta of 3950, and nominal values of 90000Ω at
  *  25°C calculated for temperatures across the range above.
  *
  * @param   The result of an ADC conversion (analogRead) in the range 0 to 4095
- * @return  Temperature in °C (+/- 4.220 °C)
+ * @return  Temperature in °C (+/- 4.000 °C)
  */
 
 int approximateTemperatureInt(unsigned int analogReadValue)
 {
-  return ((((((long)analogReadValue*7) / -93)) + 306)) - 2;
+  return ((((((long)analogReadValue*7) / -104)) + 271)) - 0;
 }
 
 
@@ -132,4 +126,3 @@ int approximateTemperatureInt(unsigned int analogReadValue)
 //  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-
