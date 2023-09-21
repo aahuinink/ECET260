@@ -69,7 +69,9 @@ static void MX_ADC1_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	// create variables
+	  uint32_t thermADC;
+	  double temp;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -100,6 +102,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
+	  HAL_ADC_Start(&hadc1);	// start ADC1
+	  HAL_ADC_PollForConversion(&hadc1, 100);
+	  thermADC = HAL_ADC_GetValue(&hadc1);
+	  printf("The value is %d\n\r", thermADC);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -202,7 +209,7 @@ static void MX_ADC1_Init(void)
   */
   sConfig.Channel = ADC_CHANNEL_1;
   sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+  sConfig.SamplingTime = ADC_SAMPLETIME_84CYCLES;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -284,7 +291,10 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+int __io_putchar(int ch){ // change printf to use ITM_SendChar
+	ITM_SendChar(ch);
+	return 0;
+}
 /* USER CODE END 4 */
 
 /**
