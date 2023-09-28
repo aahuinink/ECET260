@@ -285,14 +285,12 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
-<<<<<<< HEAD
 // --- printf --- //
 int __io_putchar(int ch){ 		// when printf is called
 	ITM_SendChar(ch);			// send char via ITM
 	return 0;					// return exit code 0
 }
-=======
->>>>>>> f7eb227bac468f8ed4c527000100213529b57323
+
 /* USER CODE END 4 */
 
 /**
