@@ -48,10 +48,13 @@ ADC_HandleTypeDef hadc3;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-// global variables to hold ADC values
-uint32_t thermADC;
-uint32_t dieADC;
-uint32_t potADC;
+// global pointers to hold ADC values
+uint32_t* thermADC;
+uint32_t* dieADC;
+uint32_t* potADC;
+
+// global pointer to hold ms count
+uint16_t* count;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -77,6 +80,8 @@ static void MX_ADC3_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+  // initialize count to 0:
+	*count = 0;
 
   /* USER CODE END 1 */
 
@@ -111,11 +116,14 @@ int main(void)
   while (1)
   {
 
-	  //blink LED every half second, and print out values to the console
-	  uint32_t start = HAL_GetTick();	  	  // get start time
-	  HAL_ADC_Start_IT(&hadc1);
-	  while ((HAL_GetTick() - start) < 500){
+	  // start ADCs
+	  HAL_ADC_Start(&hadc1);
+	  HAL_ADC_Start(&hadc2);
+	  HAL_ADC_Start(&hadc3);
 
+	  HAL_Delay(1000);			// delay 1s between prints
+	  float dieTemp =
+	  printf("Die Temp: ")
 	  }
     /* USER CODE END WHILE */
 
@@ -411,7 +419,6 @@ int __io_putchar(int ch){ 		// when printf is called
 	ITM_SendChar(ch);			// send char via ITM
 	return 0;					// return exit code 0
 }
-
 // --- ADC callback conversion --- //
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
