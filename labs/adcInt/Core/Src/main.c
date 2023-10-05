@@ -50,9 +50,9 @@ UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
 // global pointers to hold ADC values
-uint32_t* thermADC;
-uint32_t* dieADC;
-uint32_t* potADC;
+uint16_t* thermADC;
+uint16_t* dieADC;
+uint16_t* potADC;
 
 // global pointer to hold ms count
 uint16_t* count;
@@ -435,18 +435,15 @@ int __io_putchar(int ch){ 		// when printf is called
 // --- ADC callback conversion --- //
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
-	uint32_t myADCvalue = HAL_ADC_GetValue(hadc);
-	switch (hadc) {
-		case &hadc1:
-			dieADC = myADCvalue;
-			break;
-		case &hadc2:
-			thermADC = myADCvalue;
-			break;
-		case &hadc3:
-			potADC = myADCvalue;
-			break;
-		}
+	uint16_t myADCvalue = HAL_ADC_GetValue(hadc);
+	if(hadc == &hadc1){
+		*dieADC = myADCvalue;
+	} else if (hadc == &hadc2) {
+		*potADC = myADCvalue;
+	} else {
+		*thermADC = myADCvalue;
+	}
+	return;
 }
 /* USER CODE END 4 */
 

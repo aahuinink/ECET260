@@ -13,7 +13,7 @@
 
 float ConvertPotADCtoFloat(uint16_t* adcVal){
 	float result; 		// stores the resultant pot voltage
-	switch (adcVal){
+	switch (*adcVal){
 	case 0:
 		result = 0.0;
 		break;

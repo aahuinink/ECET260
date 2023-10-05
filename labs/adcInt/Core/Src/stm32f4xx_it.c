@@ -185,6 +185,7 @@ void PendSV_Handler(void)
 void SysTick_Handler(void)
 {
   /* USER CODE BEGIN SysTick_IRQn 0 */
+	extern uint16_t* count;
 	// if more than 0.5 seconds has passed
   if (*count > 499){
 	  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);		// toggle the LED
