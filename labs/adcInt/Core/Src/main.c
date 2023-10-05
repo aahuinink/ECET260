@@ -23,6 +23,7 @@
 /* USER CODE BEGIN Includes */
 #include "thermistor.h"
 #include "pot.h"
+#include "dieTemp.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -122,9 +123,9 @@ int main(void)
 	  HAL_ADC_Start(&hadc3);
 
 	  HAL_Delay(1000);			// delay 1s between prints
-	  float dieTemp =
-	  printf("Die Temp: ")
-	  }
+	  float dieTemp;
+	  printf("Die Temp: ");
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
