@@ -46,16 +46,16 @@ ADC_HandleTypeDef hadc1;
 ADC_HandleTypeDef hadc2;
 ADC_HandleTypeDef hadc3;
 
+TIM_HandleTypeDef htim2;
+
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
 // global pointers to hold ADC values
-uint16_t* thermADC;
-uint16_t* dieADC;
-uint16_t* potADC;
+uint16_t thermADC;
+uint16_t dieADC;
+uint16_t potADC;
 
-// global pointer to hold ms count
-uint16_t* count;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -65,6 +65,7 @@ static void MX_USART2_UART_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_ADC2_Init(void);
 static void MX_ADC3_Init(void);
+static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -81,8 +82,6 @@ static void MX_ADC3_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  // initialize count to 0:
-	*count = 0;
 	float dieTemp;
 	float thermTemp;
 	float potVoltage;
@@ -94,7 +93,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, SET);  // initialize LD2 as on
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -110,8 +109,9 @@ int main(void)
   MX_ADC1_Init();
   MX_ADC2_Init();
   MX_ADC3_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_TIM_Base_Start_IT(&htim2); // start the 500ms hardware timer
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -120,11 +120,10 @@ int main(void)
   {
 
 	  // start ADCs
-	  HAL_ADC_Start(&hadc1);
-	  HAL_ADC_Start(&hadc2);
-	  HAL_ADC_Start(&hadc3);
-
-	  HAL_Delay(1000);			// delay 1s between prints
+	  HAL_ADC_Start_IT(&hadc1);
+	  HAL_ADC_Start_IT(&hadc2);
+	  HAL_ADC_Start_IT(&hadc3);
+	  HAL_Delay(1000); // only print every second
 
 	  // get temp and voltage values from the ADC values
 	  dieTemp = ConvertDieTempADCtoFloat(dieADC);
@@ -132,11 +131,13 @@ int main(void)
 	  potVoltage = ConvertPotADCtoFloat(potADC);
 
 	  // print to the terminal
-	  printf("ADC Outputs:\n"
-			  "\tDie Temperature: {dieTemp}\u00B0C\n\r"
-			  "\tThermistor Temperature: {thermTemp}\u00B0C\n\r"
-			  "\tPot Voltage: {potVoltage} V\n\r"
-			  "\n\r");
+	  printf("ADC Outputs:\n\r"
+			  "\tDie Temperature: %.1f\xB0\C\n\r"
+			  "\tThermistor Temperature: %.1f\xB0\C \n\r"
+			  "\tPot Voltage: %.1f V\n\r"
+			  "\n\r", dieTemp, thermTemp, potVoltage);
+
+
 
     /* USER CODE END WHILE */
 
@@ -356,6 +357,51 @@ static void MX_ADC3_Init(void)
 }
 
 /**
+  * @brief TIM2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM2_Init(void)
+{
+
+  /* USER CODE BEGIN TIM2_Init 0 */
+
+  /* USER CODE END TIM2_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM2_Init 1 */
+
+  /* USER CODE END TIM2_Init 1 */
+  htim2.Instance = TIM2;
+  htim2.Init.Prescaler = 5000;
+  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim2.Init.Period = 9000;
+  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM2_Init 2 */
+
+  /* USER CODE END TIM2_Init 2 */
+
+}
+
+/**
   * @brief USART2 Initialization Function
   * @param None
   * @retval None
@@ -436,14 +482,21 @@ int __io_putchar(int ch){ 		// when printf is called
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
 	uint16_t myADCvalue = HAL_ADC_GetValue(hadc);
-	if(hadc == &hadc1){
-		*dieADC = myADCvalue;
-	} else if (hadc == &hadc2) {
-		*potADC = myADCvalue;
+	if(hadc == &hadc1){				// if its ADC1
+		dieADC = myADCvalue;		// set die adc reading
+		HAL_ADC_Stop_IT(&hadc1);
+	} else if (hadc == &hadc2) {	// if its ADC2
+		potADC = myADCvalue;		// set pot adc reading
+		HAL_ADC_Stop_IT(&hadc2);
 	} else {
-		*thermADC = myADCvalue;
+		thermADC = myADCvalue;		// set thermistor adc reading
+		HAL_ADC_Stop_IT(&hadc3);
 	}
 	return;
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin); // toggle the led
 }
 /* USER CODE END 4 */
 

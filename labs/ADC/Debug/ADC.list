@@ -1348,29 +1348,29 @@ int main(void)
   while (1)
   {
 
-	  HAL_ADC_Start(&hadc1);	// start ADC1
+	  HAL_ADC_Start(&hadc1);					// start ADC1
  8000fee:	480c      	ldr	r0, [pc, #48]	; (8001020 <main+0x4c>)
  8000ff0:	f000 fca2 	bl	8001938 <HAL_ADC_Start>
-	  HAL_ADC_PollForConversion(&hadc1, 100);
+	  HAL_ADC_PollForConversion(&hadc1, 100);	// wait for it to finish
  8000ff4:	2164      	movs	r1, #100	; 0x64
  8000ff6:	480a      	ldr	r0, [pc, #40]	; (8001020 <main+0x4c>)
  8000ff8:	f000 fd70 	bl	8001adc <HAL_ADC_PollForConversion>
-	  thermADC = HAL_ADC_GetValue(&hadc1);
+	  thermADC = HAL_ADC_GetValue(&hadc1);		// retrieve ADC value
  8000ffc:	4808      	ldr	r0, [pc, #32]	; (8001020 <main+0x4c>)
  8000ffe:	f000 fdf8 	bl	8001bf2 <HAL_ADC_GetValue>
  8001002:	6078      	str	r0, [r7, #4]
-	  temp = convertAnalogToTemperature(thermADC);
+	  temp = convertAnalogToTemperature(thermADC);	// convert to temperature
  8001004:	6878      	ldr	r0, [r7, #4]
  8001006:	f000 fb33 	bl	8001670 <convertAnalogToTemperature>
  800100a:	ed87 0a00 	vstr	s0, [r7]
-	  printf("The temperature is %.1f degrees Celcius.\n\r", temp);
+	  printf("The temperature is %.1f degrees Celcius.\n\r", temp);	// print to the debugger console
  800100e:	6838      	ldr	r0, [r7, #0]
  8001010:	f7ff faba 	bl	8000588 <__aeabi_f2d>
  8001014:	4602      	mov	r2, r0
  8001016:	460b      	mov	r3, r1
  8001018:	4802      	ldr	r0, [pc, #8]	; (8001024 <main+0x50>)
  800101a:	f003 f8c9 	bl	80041b0 <iprintf>
-	  HAL_ADC_Start(&hadc1);	// start ADC1
+	  HAL_ADC_Start(&hadc1);					// start ADC1
  800101e:	e7e6      	b.n	8000fee <main+0x1a>
  8001020:	200001f0 	.word	0x200001f0
  8001024:	08006520 	.word	0x08006520

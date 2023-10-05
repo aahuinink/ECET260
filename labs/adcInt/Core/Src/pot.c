@@ -11,9 +11,9 @@
 
 #include "pot.h"
 
-float ConvertPotADCtoFloat(uint16_t* adcVal){
+float ConvertPotADCtoFloat(uint16_t adcVal){
 	float result; 		// stores the resultant pot voltage
-	switch (*adcVal){
+	switch (adcVal){
 	case 0:
 		result = 0.0;
 		break;
@@ -21,7 +21,7 @@ float ConvertPotADCtoFloat(uint16_t* adcVal){
 		result = V_REF;
 		break;
 	default:
-		result = V_REF*((*adcVal)/ADC_MAX);
+		result = V_REF*((adcVal)/ADC_MAX);
 		break;
 	}
 	return result;

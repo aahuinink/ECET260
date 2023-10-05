@@ -14,7 +14,7 @@
 #define V_REF		3.3			// reference voltage
 
 
-float ConvertPotADCtoFloat(uint16_t* adcVal);
+float ConvertPotADCtoFloat(uint16_t adcVal);
 
 
 #endif /* INC_POT_H_ */

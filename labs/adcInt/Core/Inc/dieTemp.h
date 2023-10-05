@@ -18,6 +18,6 @@
 
 
 // converts the adc value to a temperature
-float ConvertDieTempADCtoFloat(uint16_t* adcVal);
+float ConvertDieTempADCtoFloat(uint16_t adcVal);
 
 #endif /* INC_DIETEMP_H_ */
