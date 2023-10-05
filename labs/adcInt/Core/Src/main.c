@@ -83,7 +83,9 @@ int main(void)
   /* USER CODE BEGIN 1 */
   // initialize count to 0:
 	*count = 0;
-
+	float dieTemp;
+	float thermTemp;
+	float potVoltage;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -123,8 +125,18 @@ int main(void)
 	  HAL_ADC_Start(&hadc3);
 
 	  HAL_Delay(1000);			// delay 1s between prints
-	  float dieTemp;
-	  printf("Die Temp: ");
+
+	  // get temp and voltage values from the ADC values
+	  dieTemp = ConvertDieTempADCtoFloat(dieADC);
+	  thermTemp = convertAnalogToTemperature(thermADC);
+	  potVoltage = ConvertPotADCtoFloat(potADC);
+
+	  // print to the terminal
+	  printf("ADC Outputs:\n"
+			  "\tDie Temperature: {dieTemp}\u00B0C\n\r"
+			  "\tThermistor Temperature: {thermTemp}\u00B0C\n\r"
+			  "\tPot Voltage: {potVoltage} V\n\r"
+			  "\n\r");
 
     /* USER CODE END WHILE */
 

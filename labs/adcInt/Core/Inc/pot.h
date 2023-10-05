@@ -9,10 +9,12 @@
 #define INC_POT_H_
 
 #include <stdint.h>
-#include <math.h>
+
+#define ADC_MAX		4095.0		// max adc value
+#define V_REF		3.3			// reference voltage
 
 
-double ConvertPotADCtoFloat(uint32_t adcVal, float max, float min);
+float ConvertPotADCtoFloat(uint16_t* adcVal);
 
 
 #endif /* INC_POT_H_ */

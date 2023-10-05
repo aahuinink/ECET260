@@ -11,6 +11,6 @@
 #include <math.h>
 #include <stdint.h>
 
-float convertAnalogToTemperature(uint32_t AnalogReadValue);
+float convertAnalogToTemperature(uint16_t* AnalogReadValue);
 
 #endif /* INC_THERMISTOR_H_ */
