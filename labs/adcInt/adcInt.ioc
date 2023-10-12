@@ -1,7 +1,7 @@
 #MicroXplorer Configuration settings - do not modify
 ADC1.Channel-0\#ChannelRegularConversion=ADC_CHANNEL_TEMPSENSOR
 ADC1.Channel-1\#ChannelRegularConversion=ADC_CHANNEL_0
-ADC1.Channel-2\#ChannelRegularConversion=ADC_CHANNEL_0
+ADC1.Channel-2\#ChannelRegularConversion=ADC_CHANNEL_1
 ADC1.IPParameters=Rank-0\#ChannelRegularConversion,Channel-0\#ChannelRegularConversion,SamplingTime-0\#ChannelRegularConversion,NbrOfConversionFlag,master,Rank-1\#ChannelRegularConversion,Channel-1\#ChannelRegularConversion,SamplingTime-1\#ChannelRegularConversion,Rank-2\#ChannelRegularConversion,Channel-2\#ChannelRegularConversion,SamplingTime-2\#ChannelRegularConversion,NbrOfConversion
 ADC1.NbrOfConversion=3
 ADC1.NbrOfConversionFlag=1
@@ -148,7 +148,7 @@ ProjectManager.ToolChainLocation=
 ProjectManager.UAScriptAfterPath=
 ProjectManager.UAScriptBeforePath=
 ProjectManager.UnderRoot=true
-ProjectManager.functionlistsort=1-SystemClock_Config-RCC-false-HAL-false,2-MX_GPIO_Init-GPIO-false-HAL-true,3-MX_USART2_UART_Init-USART2-false-HAL-true,4-MX_ADC1_Init-ADC1-false-HAL-true,5-MX_ADC2_Init-ADC2-false-HAL-true,6-MX_ADC3_Init-ADC3-false-HAL-true,7-MX_TIM2_Init-TIM2-false-HAL-true
+ProjectManager.functionlistsort=1-SystemClock_Config-RCC-false-HAL-false,2-MX_GPIO_Init-GPIO-false-HAL-true,3-MX_USART2_UART_Init-USART2-false-HAL-true,4-MX_ADC1_Init-ADC1-false-HAL-true,5-MX_TIM2_Init-TIM2-false-HAL-true
 RCC.48MHZClocksFreq_Value=84000000
 RCC.AHBFreq_Value=180000000
 RCC.APB1CLKDivider=RCC_HCLK_DIV4
