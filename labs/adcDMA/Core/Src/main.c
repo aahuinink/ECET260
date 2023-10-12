@@ -116,9 +116,9 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  // variables to hold the sums and averages of the adc values and temperatures
-	  float avgDieADC;
-	  float avgPotADC;
-	  float avgThermADC;
+	  float avgDieADC = 0;
+	  float avgPotADC = 0;
+	  float avgThermADC = 0;
 
 	  float avgDieTemp;
 	  float avgPotVoltage;
@@ -143,12 +143,12 @@ int main(void)
 
 	  // print the results
 	  printf("ADC Results:\n\r"
-			  "\tAverage Die Value: %1f\n\r"
-			  "\tAverage Die Temp: %1f\x0B\C\n\n\r"
-			  "\tAverage Pot Value: %1f\n\r"
-			  "\tAverage Pot Voltage: %1fV\n\n\r"
-			  "\tAverage Thermistor Value: %1f\n\r"
-			  "\tAverage Thermistor Temp: %1f\x0B\C\n\n\r",
+			  "\tAverage Die Value: %.1f\n\r"
+			  "\tAverage Die Temp: %.1f\xB0\C\n\n\r"
+			  "\tAverage Pot Value: %.1f\n\r"
+			  "\tAverage Pot Voltage: %.1fV\n\n\r"
+			  "\tAverage Thermistor Value: %.1f\n\r"
+			  "\tAverage Thermistor Temp: %.1f\xB0\C\n\n\r",
 			  avgDieADC, avgDieTemp, avgPotADC, avgPotVoltage, avgThermADC, avgThermTemp);
   }
   /* USER CODE END 3 */

@@ -14,9 +14,6 @@
 float ConvertPotADCtoFloat(float adcVal){
 
 	float result; 		// stores the resultant pot voltage
-
 	result = V_REF*((adcVal)/ADC_MAX);
-
-	break;
 	return result;
 }

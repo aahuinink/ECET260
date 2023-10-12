@@ -3794,9 +3794,9 @@ LOAD C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
 .rodata         0x0000000008006578      0x3b4
                 0x0000000008006578                . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x0000000008006578       0x25 ./Core/Src/main.o
+ .rodata        0x0000000008006578       0x26 ./Core/Src/main.o
  *(.rodata*)
- *fill*         0x000000000800659d        0x3 
+ *fill*         0x000000000800659e        0x2 
  .rodata.AHBPrescTable
                 0x00000000080065a0       0x10 ./Core/Src/system_stm32f4xx.o
                 0x00000000080065a0                AHBPrescTable

@@ -1363,7 +1363,7 @@ int main(void)
  8001004:	6878      	ldr	r0, [r7, #4]
  8001006:	f000 fb3b 	bl	8001680 <convertAnalogToTemperature>
  800100a:	ed87 0a00 	vstr	s0, [r7]
-	  printf("ADC Value: %i;\tTemperature: %1f\xB0\C\n\n\r", thermADC, temp);	// print to the debugger console
+	  printf("ADC Value: %i;\tTemperature: %.1f\xB0\C\n\n\r", thermADC, temp);	// print to the debugger console
  800100e:	6838      	ldr	r0, [r7, #0]
  8001010:	f7ff faba 	bl	8000588 <__aeabi_f2d>
  8001014:	4602      	mov	r2, r0
