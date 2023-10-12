@@ -109,7 +109,7 @@ int main(void)
 	  HAL_ADC_PollForConversion(&hadc1, 100);	// wait for it to finish
 	  thermADC = HAL_ADC_GetValue(&hadc1);		// retrieve ADC value
 	  temp = convertAnalogToTemperature(thermADC);	// convert to temperature
-	  printf("The temperature is %.1f degrees Celcius.\n\r", temp);	// print to the debugger console
+	  printf("ADC Value: %i;\tTemperature: %1f\xB0\C", thermADC, temp);	// print to the debugger console
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
