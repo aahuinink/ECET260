@@ -50,6 +50,11 @@ UART_HandleTypeDef huart2;
 /* USER CODE BEGIN PV */
 // array to store the adc values
 uint16_t adcVals[48];
+
+// global variables for the cubeMonitor
+float avgDieTemp;
+float avgPotVoltage;
+float avgThermTemp;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -119,10 +124,6 @@ int main(void)
 	  float avgDieADC = 0;
 	  float avgPotADC = 0;
 	  float avgThermADC = 0;
-
-	  float avgDieTemp;
-	  float avgPotVoltage;
-	  float avgThermTemp;
 
 	  for(uint8_t i = 0; i < 48; i++)		// start by parsing and summing the adc values
 	  {
