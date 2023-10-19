@@ -37,8 +37,8 @@ bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
  ** properly set the below the 2 defines to address
  ********  the SPI port defined on CubeMX *********/
 
-#define TOUCH_SPI_PORT 	hspi2
-#define TOUCH_SPI 		SPI2
+#define TOUCH_SPI_PORT 	hspi1
+#define TOUCH_SPI 		SPI1
 
 
 /*****************     STEP 2      *****************
