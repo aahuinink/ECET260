@@ -19,11 +19,27 @@
             "Type": "TextArea",
             "Name": "textArea1",
             "X": 89,
-            "Y": 110,
+            "Y": 100,
             "Width": 143,
             "Height": 24,
             "TextId": "__SingleUse_FHOV",
             "TextRotation": "0",
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea2",
+            "X": 111,
+            "Y": 128,
+            "Width": 98,
+            "Height": 24,
+            "TextId": "__SingleUse_38O0",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
             "AutoSize": true
           }
         ],

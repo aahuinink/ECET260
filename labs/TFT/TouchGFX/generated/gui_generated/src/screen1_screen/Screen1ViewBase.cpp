@@ -15,11 +15,17 @@ Screen1ViewBase::Screen1ViewBase()
     box1.setColor(touchgfx::Color::getColorFromRGB(18, 112, 95));
     add(box1);
 
-    textArea1.setXY(89, 110);
+    textArea1.setXY(89, 100);
     textArea1.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textArea1.setLinespacing(0);
     textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_FHOV));
     add(textArea1);
+
+    textArea2.setXY(111, 128);
+    textArea2.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    textArea2.setLinespacing(0);
+    textArea2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_38O0));
+    add(textArea2);
 }
 
 Screen1ViewBase::~Screen1ViewBase()
