@@ -31,7 +31,12 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "fonts.h"
+#include "z_displ_ILI9XXX.h"
+#include "z_displ_ILI9XXX_test.h"
+#include "z_touch_XPT2046.h"
+#include "z_touch_XPT2046_test.h"
+#include "z_touch_XPT2046_menu.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -64,6 +69,12 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define B1_Pin GPIO_PIN_13
 #define B1_GPIO_Port GPIOC
+#define RED_Pin GPIO_PIN_1
+#define RED_GPIO_Port GPIOC
+#define GREEN_Pin GPIO_PIN_2
+#define GREEN_GPIO_Port GPIOC
+#define BLUE_Pin GPIO_PIN_3
+#define BLUE_GPIO_Port GPIOC
 #define USART_TX_Pin GPIO_PIN_2
 #define USART_TX_GPIO_Port GPIOA
 #define USART_RX_Pin GPIO_PIN_3

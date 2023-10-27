@@ -30,6 +30,8 @@ public:
     }
 
     void tick();
+
+    void setLED(bool state);
 protected:
     ModelListener* modelListener;
 };

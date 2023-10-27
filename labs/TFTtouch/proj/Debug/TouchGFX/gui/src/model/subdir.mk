@@ -5,13 +5,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../TouchGFX/gui/src/model/Model.cpp 
+../TouchGFX/gui/src/model/Model.cpp \
+../TouchGFX/gui/src/model/ModelListener.cpp 
 
 OBJS += \
-./TouchGFX/gui/src/model/Model.o 
+./TouchGFX/gui/src/model/Model.o \
+./TouchGFX/gui/src/model/ModelListener.o 
 
 CPP_DEPS += \
-./TouchGFX/gui/src/model/Model.d 
+./TouchGFX/gui/src/model/Model.d \
+./TouchGFX/gui/src/model/ModelListener.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -21,7 +24,7 @@ TouchGFX/gui/src/model/%.o TouchGFX/gui/src/model/%.su TouchGFX/gui/src/model/%.
 clean: clean-TouchGFX-2f-gui-2f-src-2f-model
 
 clean-TouchGFX-2f-gui-2f-src-2f-model:
-	-$(RM) ./TouchGFX/gui/src/model/Model.cyclo ./TouchGFX/gui/src/model/Model.d ./TouchGFX/gui/src/model/Model.o ./TouchGFX/gui/src/model/Model.su
+	-$(RM) ./TouchGFX/gui/src/model/Model.cyclo ./TouchGFX/gui/src/model/Model.d ./TouchGFX/gui/src/model/Model.o ./TouchGFX/gui/src/model/Model.su ./TouchGFX/gui/src/model/ModelListener.cyclo ./TouchGFX/gui/src/model/ModelListener.d ./TouchGFX/gui/src/model/ModelListener.o ./TouchGFX/gui/src/model/ModelListener.su
 
 .PHONY: clean-TouchGFX-2f-gui-2f-src-2f-model
 

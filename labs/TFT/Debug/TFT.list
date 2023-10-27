@@ -45,13 +45,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  20 .debug_macro  00029c43  00000000  00000000  000aa233  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line   0002ba32  00000000  00000000  000d3e76  2**0
+ 21 .debug_line   0003121c  00000000  00000000  000d3e76  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_str    000eb757  00000000  00000000  000ff8a8  2**0
+ 22 .debug_str    000eb733  00000000  00000000  00105092  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 23 .debug_frame  0000a428  00000000  00000000  001eb000  2**2
+ 23 .debug_frame  0000a428  00000000  00000000  001f07c8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 24 .debug_line_str 0000006e  00000000  00000000  001f5428  2**0
+ 24 .debug_line_str 0000004a  00000000  00000000  001fabf0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -460,13 +460,13 @@ int main(void)
   MX_TouchGFX_Init();
  80005d0:	f004 fc20 	bl	8004e14 <MX_TouchGFX_Init>
   /* USER CODE BEGIN 2 */
-  Displ_Init(Displ_Orientat_90);		// initialize the display and set the initial display orientation (here is orientaton: 0°) - THIS FUNCTION MUST PRECEED ANY OTHER DISPLAY FUNCTION CALL.
- 80005d4:	2001      	movs	r0, #1
+  Displ_Init(Displ_Orientat_270);		// initialize the display and set the initial display orientation (here is orientaton: 0°) - THIS FUNCTION MUST PRECEED ANY OTHER DISPLAY FUNCTION CALL.
+ 80005d4:	2003      	movs	r0, #3
  80005d6:	f000 fda5 	bl	8001124 <Displ_Init>
   touchgfxSignalVSync();		// asks TouchGFX to start initial display drawing
  80005da:	f008 f917 	bl	800880c <touchgfxSignalVSync>
-  Displ_BackLight('I');  			// initialize backlight and turn it on at init level
- 80005de:	2049      	movs	r0, #73	; 0x49
+  Displ_BackLight('1');  			// initialize backlight and turn it on at init level
+ 80005de:	2031      	movs	r0, #49	; 0x31
  80005e0:	f000 fe48 	bl	8001274 <Displ_BackLight>
 
   /* Infinite loop */
@@ -476,9 +476,9 @@ int main(void)
 	  touchgfxSignalVSync();		// asks TouchGFX to get events and redraw screen
  80005e4:	f008 f912 	bl	800880c <touchgfxSignalVSync>
 
-	    /* USER CODE END WHILE */
+    /* USER CODE END WHILE */
 
-	   MX_TouchGFX_Process();
+  MX_TouchGFX_Process();
  80005e8:	f004 fc1c 	bl	8004e24 <MX_TouchGFX_Process>
 	  touchgfxSignalVSync();		// asks TouchGFX to get events and redraw screen
  80005ec:	e7fa      	b.n	80005e4 <main+0x38>
@@ -18614,7 +18614,7 @@ public:
 
 08007164 <_ZN20STM32TouchController4initEv>:
 
-#include <STM32TouchController.hpp>
+#include "STM32TouchController.hpp"
 #include "main.h"
 
 void STM32TouchController::init()
@@ -18644,7 +18644,7 @@ bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
  800717e:	60f8      	str	r0, [r7, #12]
  8007180:	60b9      	str	r1, [r7, #8]
  8007182:	607a      	str	r2, [r7, #4]
-  return ((bool) Touch_TouchGFXSampleTouch(&x, &y));
+    return ((bool) Touch_TouchGFXSampleTouch(&x, &y));
  8007184:	6879      	ldr	r1, [r7, #4]
  8007186:	68b8      	ldr	r0, [r7, #8]
  8007188:	f7fa fa9e 	bl	80016c8 <Touch_TouchGFXSampleTouch>
@@ -19441,9 +19441,9 @@ class TouchGFXGeneratedHAL : public touchgfx::HAL
  80075ee:	bd80      	pop	{r7, pc}
 
 080075f0 <_ZN11TouchGFXHAL10initializeEv>:
-/* USER CODE BEGIN TouchGFXHAL.cpp */
-
-using namespace touchgfx;
+ */
+#warning "A user must call touchgfx::startNewTransfer(); once touchgfxDisplayDriverTransmitBlock() has succesfully sent a block."
+#warning "A user must implement C-methods touchgfxDisplayDriverTransmitActive() and touchgfxDisplayDriverTransmitBlock() used by the Partial Framebuffer Strategy."
 
 void TouchGFXHAL::initialize()
 {

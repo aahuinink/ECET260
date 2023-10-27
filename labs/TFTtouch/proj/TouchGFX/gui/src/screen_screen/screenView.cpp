@@ -15,14 +15,31 @@ void screenView::tearDownScreen()
     screenViewBase::tearDownScreen();
 }
 
-void RedButtonPressed()
+void screenView::setLED (bool state)
 {
-	HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+	// toggle visibility of dark and bright led images based on the state of the hardware button
+	BrightLED.setVisible(state);
+	DarkLED.setVisible(!state);
+	BrightLED.invalidate();
+	DarkLED.invalidate();
+}
+
+void screenView::RedButtonPressed()
+{
+	HAL_GPIO_TogglePin(RED_GPIO_Port, RED_Pin);
 	return;
 }
 
-void screenView::setLED (bool state)
+void screenView::GreenButtonPressed()
 {
-	BrightLED.setVisible(state);	// toggle the bright and dark led images
-	DarkLED.setVisible(!state);
+	HAL_GPIO_TogglePin(GREEN_GPIO_Port, GREEN_Pin);
+		return;
 }
+
+void screenView::BlueButtonPressed()
+{
+	HAL_GPIO_TogglePin(BLUE_GPIO_Port, BLUE_Pin);
+		return;
+}
+
+

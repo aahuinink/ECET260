@@ -13,7 +13,10 @@ public:
     virtual ~screenView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
+    virtual void setLED(bool state);
     virtual void RedButtonPressed();
+    virtual void GreenButtonPressed();
+    virtual void BlueButtonPressed();
 };
 
 #endif // SCREENVIEW_HPP

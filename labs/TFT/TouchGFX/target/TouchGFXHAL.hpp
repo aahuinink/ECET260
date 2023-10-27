@@ -24,7 +24,7 @@
 
 /* USER CODE BEGIN TouchGFXHAL.hpp */
 
-#include <TouchGFXGeneratedHAL.hpp>
+#include "generated/TouchGFXGeneratedHAL.hpp"
 
 /**
  * @class TouchGFXHAL

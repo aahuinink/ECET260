@@ -86,8 +86,8 @@ all: main-build
 main-build: TFT.elf secondary-outputs
 
 # Tool invocations
-TFT.elf TFT.map: $(OBJS) $(USER_OBJS) C:\Users\a_hui\OneDriveCC\school\fall_2023\ecet260_ARM\labs\TFT\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "TFT.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\a_hui\OneDriveCC\school\fall_2023\ecet260_ARM\labs\TFT\STM32F446RETX_FLASH.ld" -Wl,-Map="TFT.map" -Wl,--gc-sections -static -L"C:\Users\a_hui\OneDriveCC\school\fall_2023\ecet260_ARM\labs\TFT\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+TFT.elf TFT.map: $(OBJS) $(USER_OBJS) M:\ECET260\ECET260\labs\TFT\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "TFT.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"M:\ECET260\ECET260\labs\TFT\STM32F446RETX_FLASH.ld" -Wl,-Map="TFT.map" -Wl,--gc-sections -static -L"M:\ECET260\ECET260\labs\TFT\Middlewares\ST\touchgfx\lib\core\cortex_m4f\gcc" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

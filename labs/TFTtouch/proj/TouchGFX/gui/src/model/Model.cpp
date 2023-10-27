@@ -1,9 +1,10 @@
 #include <gui/model/Model.hpp>
 #include <gui/model/ModelListener.hpp>
+#include <gui/screen_screen/screenPresenter.hpp>
 #include "stm32f4xx_hal.h"
 #include "main.h"
 
-Model::Model() : modelListener(0), buttonState (Released), ledOn (false)
+Model::Model() : modelListener(0), buttonState (Released), ledON (false)
 {
 
 }
@@ -15,7 +16,7 @@ void Model::tick()
 	{
 		switch (buttonState){
 		case Released:				// if registering a new press
-			ledOn = ledOn ^ true;	// toggle led state
+			ledON = ledON ^ true;	// toggle led state
 			buttonState = Pressed;	// change to pressed state
 			break;
 		case Pressed:
@@ -24,4 +25,7 @@ void Model::tick()
 	}else{
 		buttonState = Released; // otherwise reset button state
 	}
+
+	modelListener->setLED (ledON);
+
 }

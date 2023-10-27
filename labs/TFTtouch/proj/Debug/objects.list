@@ -62,6 +62,7 @@
 "./TouchGFX/generated/texts/src/TypedTextDatabase.o"
 "./TouchGFX/gui/src/common/FrontendApplication.o"
 "./TouchGFX/gui/src/model/Model.o"
+"./TouchGFX/gui/src/model/ModelListener.o"
 "./TouchGFX/gui/src/screen_screen/screenPresenter.o"
 "./TouchGFX/gui/src/screen_screen/screenView.o"
 "./TouchGFX/target/STM32TouchController.o"

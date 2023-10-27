@@ -27,6 +27,8 @@ public:
 
     virtual ~screenPresenter() {}
 
+    virtual void setLED(bool state);
+
 private:
     screenPresenter();
 

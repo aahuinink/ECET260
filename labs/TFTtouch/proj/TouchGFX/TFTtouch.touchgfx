@@ -120,6 +120,30 @@
               "Type": "ActionCustom",
               "FunctionName": "RedButtonPressed"
             }
+          },
+          
+          {
+            "InteractionName": "greenbutton",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "GreenBtn"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "GreenButtonPressed"
+            }
+          },
+          
+          {
+            "InteractionName": "bluebutton",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "BlueBtn"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "BlueButtonPressed"
+            }
           }
         ]
       }

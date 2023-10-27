@@ -108,6 +108,9 @@ int main(void)
   MX_TIM3_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
+  Displ_Init(Displ_Orientat_270);		// initialize the display and set the initial display orientation (here is orientaton: 0°) - THIS FUNCTION MUST PRECEED ANY OTHER DISPLAY FUNCTION CALL.
+    touchgfxSignalVSync();		// asks TouchGFX to start initial display drawing
+    Displ_BackLight('1');  			// initialize backlight and turn it on at init level
 
   /* USER CODE END 2 */
 
@@ -115,6 +118,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  touchgfxSignalVSync();		// asks TouchGFX to get events and redraw screen
 
     /* USER CODE END WHILE */
 
@@ -347,7 +351,8 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, DISPL_DC_Pin|DISPL_LED_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, RED_Pin|GREEN_Pin|BLUE_Pin|DISPL_DC_Pin
+                          |DISPL_LED_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, LD2_Pin|TOUCH_CS_Pin, GPIO_PIN_RESET);
@@ -361,8 +366,10 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : DISPL_DC_Pin DISPL_LED_Pin */
-  GPIO_InitStruct.Pin = DISPL_DC_Pin|DISPL_LED_Pin;
+  /*Configure GPIO pins : RED_Pin GREEN_Pin BLUE_Pin DISPL_DC_Pin
+                           DISPL_LED_Pin */
+  GPIO_InitStruct.Pin = RED_Pin|GREEN_Pin|BLUE_Pin|DISPL_DC_Pin
+                          |DISPL_LED_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

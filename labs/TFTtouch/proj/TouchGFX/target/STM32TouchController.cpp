@@ -23,6 +23,7 @@
 /* USER CODE BEGIN STM32TouchController */
 
 #include <STM32TouchController.hpp>
+#include "main.h"
 
 void STM32TouchController::init()
 {
@@ -34,16 +35,6 @@ void STM32TouchController::init()
 
 bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
 {
-    /**
-     * By default sampleTouch returns false,
-     * return true if a touch has been detected, otherwise false.
-     *
-     * Coordinates are passed to the caller by reference by x and y.
-     *
-     * This function is called by the TouchGFX framework.
-     * By default sampleTouch is called every tick, this can be adjusted by HAL::setTouchSampleRate(int8_t);
-     *
-     */
 	return ((bool) Touch_TouchGFXSampleTouch(&x, &y));
 }
 
