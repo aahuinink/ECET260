@@ -1,0 +1,203 @@
+{
+  "Application": {
+    "Screens": [
+      {
+        "Name": "screen",
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "Background",
+            "Width": 320,
+            "Height": 240,
+            "RelativeFilename": "backsmall.png"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "RedBtn",
+            "X": 28,
+            "Y": 20,
+            "Width": 110,
+            "Height": 50,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_round_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_round_normal.png",
+            "TextId": "__SingleUse_XH0G",
+            "ReleasedColor": {
+              "Red": 255
+            },
+            "PressedColor": {
+              "Red": 76,
+              "Green": 2,
+              "Blue": 2
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\tiny_round_normal.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "GreenBtn",
+            "X": 28,
+            "Y": 95,
+            "Width": 110,
+            "Height": 50,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_round_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_round_normal.png",
+            "TextId": "__SingleUse_CU6G",
+            "ReleasedColor": {
+              "Green": 255,
+              "Blue": 128
+            },
+            "PressedColor": {
+              "Green": 84,
+              "Blue": 32
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\tiny_round_normal.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "BlueBtn",
+            "X": 28,
+            "Y": 172,
+            "Width": 110,
+            "Height": 50,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_round_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_tiny_round_normal.png",
+            "TextId": "__SingleUse_I7PT",
+            "ReleasedColor": {
+              "Green": 52,
+              "Blue": 194
+            },
+            "PressedColor": {
+              "Red": 2,
+              "Blue": 61
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\tiny_round_normal.json"
+          },
+          {
+            "Type": "Image",
+            "Name": "DarkLED",
+            "X": 182,
+            "Y": 70,
+            "Width": 100,
+            "Height": 100,
+            "RelativeFilename": "ledOffsr.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "BrightLED",
+            "X": 185,
+            "Y": 64,
+            "Width": 100,
+            "Height": 100,
+            "Visible": false,
+            "RelativeFilename": "ledOnsr.png"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "Name",
+            "X": 182,
+            "Width": 138,
+            "Height": 24,
+            "TextId": "__SingleUse_TWNZ",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "redbutton",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "RedBtn"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "RedButtonPressed"
+            }
+          },
+          {
+            "InteractionName": "greenbutton",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "GreenBtn"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "GreenButtonPressed"
+            }
+          },
+          {
+            "InteractionName": "blue",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "BlueBtn"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "BlueButtonPressed"
+            }
+          }
+        ]
+      }
+    ],
+    "CustomContainerDefinitions": [],
+    "Name": "MyApplication",
+    "Resolution": {
+      "Width": 320,
+      "Height": 240
+    },
+    "SelectedColorDepth": 16,
+    "StartupScreenName": "screen",
+    "SelectedStartupLanguage": "GB",
+    "TouchGfxPath": "../Middlewares/ST/touchgfx",
+    "UIPath": ".",
+    "AvailableColorDepths": [
+      16
+    ],
+    "AvailableLCDs": {
+      "16": "LCD16bpp"
+    },
+    "AvailableSections": [
+      "ExtFlashSection",
+      "IntFlashSection"
+    ],
+    "AvailableResolutions": [
+      {
+        "Width": 320,
+        "Height": 240
+      }
+    ],
+    "PhysicalButtons": [],
+    "FrameworkFeatures": {
+      "LCD16bpp": {
+        "Id": "LCD16bpp",
+        "IsEnabled": true
+      }
+    },
+    "GenerateAssetsCommand": "make -f simulator/gcc/Makefile assets -j8",
+    "PostGenerateCommand": "touchgfx update_project --project-file=simulator/msvs/Application.vcxproj",
+    "PostGenerateTargetCommand": "touchgfx update_project",
+    "CompileSimulatorCommand": "make -f simulator/gcc/Makefile -j8",
+    "RunSimulatorCommand": "build\\bin\\simulator.exe",
+    "LandscapeSkinX": 0,
+    "LandscapeSkinY": 0,
+    "PortraitSkinX": 0,
+    "PortraitSkinY": 0,
+    "DisplayOrientation": "Landscape",
+    "Family": "STM32F4",
+    "SubFamily": "STM32F446",
+    "Toolchain": "STM32CubeIDE",
+    "Platform": "m4",
+    "ProjectFile": "../TFTtouch.ioc",
+    "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
+    "OptionalComponents": [],
+    "AdditionalFeatures": []
+  },
+  "Version": "4.22.1"
+}
