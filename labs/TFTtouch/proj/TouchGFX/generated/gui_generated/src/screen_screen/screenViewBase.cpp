@@ -30,6 +30,7 @@ screenViewBase::screenViewBase() :
     GreenBtn.setLabelText(touchgfx::TypedText(T___SINGLEUSE_CU6G));
     GreenBtn.setLabelColor(touchgfx::Color::getColorFromRGB(0, 255, 128));
     GreenBtn.setLabelColorPressed(touchgfx::Color::getColorFromRGB(0, 84, 32));
+    GreenBtn.setAction(buttonCallback);
     add(GreenBtn);
 
     BlueBtn.setXY(28, 172);
@@ -37,9 +38,10 @@ screenViewBase::screenViewBase() :
     BlueBtn.setLabelText(touchgfx::TypedText(T___SINGLEUSE_I7PT));
     BlueBtn.setLabelColor(touchgfx::Color::getColorFromRGB(0, 52, 194));
     BlueBtn.setLabelColorPressed(touchgfx::Color::getColorFromRGB(2, 0, 61));
+    BlueBtn.setAction(buttonCallback);
     add(BlueBtn);
 
-    DarkLED.setXY(185, 70);
+    DarkLED.setXY(182, 70);
     DarkLED.setBitmap(touchgfx::Bitmap(BITMAP_LEDOFFSR_ID));
     add(DarkLED);
 
@@ -74,24 +76,18 @@ void screenViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
         //Call RedButtonPressed
         RedButtonPressed();
     }
-}
-
-void screenViewBase::handleKeyEvent(uint8_t key)
-{
-    if(108 == key)
+    if (&src == &GreenBtn)
     {
-        //Hide_LED
-        //When hardware button 108 clicked hide DarkLED
-        //Hide DarkLED
-        DarkLED.setVisible(false);
-        DarkLED.invalidate();
-    
-        //ShowLED
-        //When Hide_LED completed show BrightLED
-        //Show BrightLED
-        BrightLED.setVisible(true);
-        BrightLED.invalidate();
-    
-    
+        //greenbutton
+        //When GreenBtn clicked call virtual function
+        //Call GreenButtonPressed
+        GreenButtonPressed();
+    }
+    if (&src == &BlueBtn)
+    {
+        //blue
+        //When BlueBtn clicked call virtual function
+        //Call BlueButtonPressed
+        BlueButtonPressed();
     }
 }

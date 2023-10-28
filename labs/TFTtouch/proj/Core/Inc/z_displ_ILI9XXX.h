@@ -48,9 +48,9 @@
 /******************    STEP 2    *****************
  * which display are you using?
  *************************************************/
-//#define ILI9341
+#define ILI9341
 //#define ILI9488_V1
-#define ILI9488_V2
+//#define ILI9488_V2
 
 
 /******************    STEP 3    ******************
@@ -175,8 +175,8 @@
 /***************   display size      ***************
  ***************************************************/
 #ifdef ILI9341
-#define DISPL_WIDTH  240		// 0 orientation
-#define DISPL_HEIGHT 320		// 0 orientation
+#define DISPL_WIDTH  320		// 0 orientation
+#define DISPL_HEIGHT 240		// 0 orientation
 #endif
 #ifdef ILI9488
 #define DISPL_WIDTH  320		// 0 orientation

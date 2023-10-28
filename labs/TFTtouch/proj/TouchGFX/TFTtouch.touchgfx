@@ -98,7 +98,7 @@
             "Name": "Name",
             "X": 182,
             "Width": 138,
-            "Height": 20,
+            "Height": 24,
             "TextId": "__SingleUse_TWNZ",
             "TextRotation": "0",
             "Color": {
@@ -121,7 +121,6 @@
               "FunctionName": "RedButtonPressed"
             }
           },
-          
           {
             "InteractionName": "greenbutton",
             "Trigger": {
@@ -133,9 +132,8 @@
               "FunctionName": "GreenButtonPressed"
             }
           },
-          
           {
-            "InteractionName": "bluebutton",
+            "InteractionName": "blue",
             "Trigger": {
               "Type": "TriggerClicked",
               "TriggerComponent": "BlueBtn"

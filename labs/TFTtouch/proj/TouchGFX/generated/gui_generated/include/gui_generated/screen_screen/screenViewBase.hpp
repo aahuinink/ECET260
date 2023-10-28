@@ -18,12 +18,19 @@ public:
     screenViewBase();
     virtual ~screenViewBase();
     virtual void setupScreen();
-    virtual void handleKeyEvent(uint8_t key);
 
     /*
      * Virtual Action Handlers
      */
     virtual void RedButtonPressed()
+    {
+        // Override and implement this function in screen
+    }
+    virtual void GreenButtonPressed()
+    {
+        // Override and implement this function in screen
+    }
+    virtual void BlueButtonPressed()
     {
         // Override and implement this function in screen
     }

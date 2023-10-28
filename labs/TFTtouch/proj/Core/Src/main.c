@@ -108,7 +108,7 @@ int main(void)
   MX_TIM3_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
-  Displ_Init(Displ_Orientat_270);		// initialize the display and set the initial display orientation (here is orientaton: 0°) - THIS FUNCTION MUST PRECEED ANY OTHER DISPLAY FUNCTION CALL.
+  Displ_Init(Displ_Orientat_0);		// initialize the display and set the initial display orientation (here is orientaton: 0°) - THIS FUNCTION MUST PRECEED ANY OTHER DISPLAY FUNCTION CALL.
     touchgfxSignalVSync();		// asks TouchGFX to start initial display drawing
     Displ_BackLight('1');  			// initialize backlight and turn it on at init level
 
