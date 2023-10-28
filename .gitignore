@@ -1,3 +1,4 @@
 submit.txt
 *.docx
-Debug/
+**/Debug*
+
