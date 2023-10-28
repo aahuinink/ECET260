@@ -1,4 +1,5 @@
 submit.txt
 *.docx
 **/Debug*
-
+**/Release*
+*.bin
