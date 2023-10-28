@@ -1,3 +1,0 @@
-../Core/Src/thermistor.c:38:8:convertAnalogToTemperature	2
-../Core/Src/thermistor.c:69:8:approximateTemperatureFloat	1
-../Core/Src/thermistor.c:93:5:approximateTemperatureInt	1
